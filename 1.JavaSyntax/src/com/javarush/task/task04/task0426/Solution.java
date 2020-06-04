@@ -18,7 +18,7 @@ public class Solution {
         } else {
             if (number < 0)
                 result = "отрицательное ";
-            else if (number > 0)
+            else
                 result = "положительное ";
 
             if(number % 2 == 0)
