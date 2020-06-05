@@ -17,7 +17,6 @@ public class Solution {
                 dog = new Dog();
                 dog = null;
             }
-
         }
     }
 }

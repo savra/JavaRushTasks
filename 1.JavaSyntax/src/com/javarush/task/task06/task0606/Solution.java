@@ -18,7 +18,6 @@ public class Solution {
         int n = Integer.parseInt(bufferedReader.readLine());
 
         int digitCount = (int) Math.log10(n);
-        int rest;
         int exp;
         while (digitCount >= 0) {
             exp = (int) Math.pow(10, digitCount);
