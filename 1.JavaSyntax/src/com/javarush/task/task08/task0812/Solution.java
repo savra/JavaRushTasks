@@ -18,6 +18,8 @@ public class Solution {
         for (int i = 0; i < 10; i++)
             integers.add(Integer.parseInt(reader.readLine()));
 
+
+
         int maxRepeatIntCount = 1;
         int currentRepeatIntCount = 1;
 
