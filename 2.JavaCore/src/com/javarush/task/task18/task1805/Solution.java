@@ -21,9 +21,8 @@ public class Solution {
 
         Set<Integer> integerSet = new TreeSet<>();
 
-        while (fileInputStream.available() > 0) {
+        while (fileInputStream.available() > 0)
             integerSet.add(fileInputStream.read());
-        }
 
         fileInputStream.close();
 
