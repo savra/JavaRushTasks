@@ -26,7 +26,6 @@ public class Solution {
                             fileOutputStream.write(fileInputStream.read() - 10);
                         fileOutputStream.flush();
                         break;
-
                 }
             } catch (IOException e) {
                 e.printStackTrace();
