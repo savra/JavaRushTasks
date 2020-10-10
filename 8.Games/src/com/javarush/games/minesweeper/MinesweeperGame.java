@@ -10,9 +10,11 @@ import java.util.List;
 public class MinesweeperGame extends Game {
     private static final int SIDE = 9;
     private static final String MINE = "\uD83D\uDCA3";
+    private static final String FLAG = "\uD83D\uDEA9";
 
     private final GameObject[][] gameField = new GameObject[SIDE][SIDE];
     private int countMinesOnField;
+    private int countFlags;
 
     @Override
     public void initialize() {
@@ -32,6 +34,7 @@ public class MinesweeperGame extends Game {
             }
         }
 
+        countFlags = countMinesOnField;
         countMineNeighbors();
     }
 
