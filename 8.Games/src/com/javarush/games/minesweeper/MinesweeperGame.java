@@ -63,25 +63,27 @@ public class MinesweeperGame extends Game {
     private void countMineNeighbors() {
         Arrays.stream(gameField).
                 flatMap(Arrays::stream).filter(gameObject -> !gameObject.isMine).
-                forEach(gameObject -> gameObject.countMineNeighbors = (int)getNeighbors(gameObject).stream().filter(currObject -> currObject.isMine).count());
+                forEach(gameObject -> gameObject.countMineNeighbors = (int) getNeighbors(gameObject).stream().filter(currObject -> currObject.isMine).count());
     }
 
     private void openTile(int x, int y) {
-        gameField[y][x].isOpen = true;
-        setCellColor(x, y, Color.GREEN);
+        if (!gameField[y][x].isOpen && !gameField[y][x].isFlag && !isGameStopped) {
+            gameField[y][x].isOpen = true;
+            setCellColor(x, y, Color.GREEN);
 
-        if (gameField[y][x].isMine) {
-            setCellValueEx(x, y, Color.RED, MINE);
-            gameOver();
-        } else {
-            if (gameField[y][x].countMineNeighbors == 0) {
-                setCellValue(x, y, "");
-                getNeighbors(gameField[y][x]).stream().
-                        filter(gameObject -> !gameObject.isOpen).
-                        forEach(gameObject -> openTile(gameObject.x, gameObject.y));
-
+            if (gameField[y][x].isMine) {
+                setCellValueEx(x, y, Color.RED, MINE);
+                gameOver();
             } else {
-                setCellNumber(x, y, gameField[y][x].countMineNeighbors);
+                if (gameField[y][x].countMineNeighbors == 0) {
+                    setCellValue(x, y, "");
+                    getNeighbors(gameField[y][x]).stream().
+                            filter(gameObject -> !gameObject.isOpen).
+                            forEach(gameObject -> openTile(gameObject.x, gameObject.y));
+
+                } else {
+                    setCellNumber(x, y, gameField[y][x].countMineNeighbors);
+                }
             }
         }
     }
