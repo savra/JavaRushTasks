@@ -16,6 +16,7 @@ public class MinesweeperGame extends Game {
     private int countMinesOnField;
     private int countFlags;
     private boolean isGameStopped;
+    private int countClosedTiles = SIDE * SIDE;
 
     @Override
     public void initialize() {
@@ -69,6 +70,7 @@ public class MinesweeperGame extends Game {
     private void openTile(int x, int y) {
         if (!gameField[y][x].isOpen && !gameField[y][x].isFlag && !isGameStopped) {
             gameField[y][x].isOpen = true;
+            countClosedTiles--;
             setCellColor(x, y, Color.GREEN);
 
             if (gameField[y][x].isMine) {
@@ -85,6 +87,10 @@ public class MinesweeperGame extends Game {
                     setCellNumber(x, y, gameField[y][x].countMineNeighbors);
                 }
             }
+        }
+
+        if ((countClosedTiles == countMinesOnField) && !gameField[y][x].isMine) {
+            win();
         }
     }
 
@@ -117,5 +123,10 @@ public class MinesweeperGame extends Game {
     private void gameOver() {
         isGameStopped = true;
         showMessageDialog(Color.RED, "Вы проиграли. Игра окончена", Color.ALICEBLUE, 12);
+    }
+
+    private void win() {
+        isGameStopped = true;
+        showMessageDialog(Color.GREEN, "Вы выиграли. Игра окончена", Color.ALICEBLUE, 12);
     }
 }
