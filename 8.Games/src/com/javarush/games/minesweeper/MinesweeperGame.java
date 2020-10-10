@@ -9,7 +9,9 @@ import java.util.List;
 
 public class MinesweeperGame extends Game {
     private static final int SIDE = 9;
-    private GameObject[][] gameField = new GameObject[SIDE][SIDE];
+    private static final String MINE = "\uD83D\uDCA3";
+
+    private final GameObject[][] gameField = new GameObject[SIDE][SIDE];
     private int countMinesOnField;
 
     @Override
@@ -56,5 +58,20 @@ public class MinesweeperGame extends Game {
         Arrays.stream(gameField).
                 flatMap(Arrays::stream).filter(gameObject -> !gameObject.isMine).
                 forEach(gameObject -> gameObject.countMineNeighbors = (int)getNeighbors(gameObject).stream().filter(currObject -> currObject.isMine).count());
+    }
+
+    private void openTile(int x, int y) {
+        if (gameField[y][x].isMine) {
+            setCellValue(x, y, MINE);
+        } else {
+            setCellNumber(x, y, gameField[y][x].countMineNeighbors);
+            setCellColor(x, y, Color.GREEN);
+        }
+        gameField[y][x].isOpen = true;
+    }
+
+    @Override
+    public void onMouseLeftClick(int x, int y) {
+        openTile(x, y);
     }
 }
