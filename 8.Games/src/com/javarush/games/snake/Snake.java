@@ -31,4 +31,8 @@ public class Snake {
                 game.setCellValueEx(snakeParts.get(i).x, snakeParts.get(i).y, Color.NONE, BODY_SIGN, currentColor, 75);
         }
     }
+
+    public void move() {
+
+    }
 }
