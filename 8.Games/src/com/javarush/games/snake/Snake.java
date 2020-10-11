@@ -35,4 +35,30 @@ public class Snake {
     public void move() {
 
     }
+
+    public GameObject createNewHead() {
+        GameObject newObject;
+
+        switch (direction) {
+            case UP:
+                newObject = new GameObject(snakeParts.get(0).x, snakeParts.get(0).y - 1);
+                break;
+            case DOWN:
+                newObject = new GameObject(snakeParts.get(0).x, snakeParts.get(0).y + 1);
+                break;
+            case LEFT:
+                newObject = new GameObject(snakeParts.get(0).x - 1, snakeParts.get(0).y);
+                break;
+            case RIGHT:
+                newObject = new GameObject(snakeParts.get(0).x + 1, snakeParts.get(0).y);
+                break;
+            default:
+                throw new IllegalStateException();
+        }
+        return newObject;
+    }
+
+    public void removeTail() {
+        snakeParts.remove(snakeParts.size() - 1);
+    }
 }
