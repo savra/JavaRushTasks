@@ -57,10 +57,16 @@ public class Snake {
 
     public void move(Apple apple) {
         GameObject newHead = createNewHead();
-        if (newHead.x == apple.x && newHead.y == apple.y) {
-            apple.isAlive = false;
+
+        if (checkCollision(newHead)) {
+            isAlive = false;
         } else {
-            removeTail();
+            if (newHead.x == apple.x && newHead.y == apple.y) {
+                apple.isAlive = false;
+            } else {
+                snakeParts.add(0, newHead);
+                removeTail();
+            }
         }
     }
 
@@ -88,5 +94,9 @@ public class Snake {
 
     public void removeTail() {
         snakeParts.remove(snakeParts.size() - 1);
+    }
+
+    public boolean checkCollision(GameObject gameObject) {
+        return snakeParts.stream().anyMatch(part -> part.y == gameObject.y && part.x == gameObject.x);
     }
 }
