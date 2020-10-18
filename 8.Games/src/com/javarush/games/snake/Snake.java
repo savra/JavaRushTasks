@@ -13,6 +13,13 @@ public class Snake {
     public boolean isAlive = true;
 
     public void setDirection(Direction direction) {
+        if ((this.direction.equals(Direction.LEFT) && snakeParts.get(0).x == snakeParts.get(1).x) ||
+                (this.direction.equals(Direction.RIGHT) && snakeParts.get(0).x == snakeParts.get(1).x) ||
+                (this.direction.equals(Direction.UP) && snakeParts.get(0).y == snakeParts.get(1).y) ||
+                (this.direction.equals(Direction.DOWN) && snakeParts.get(0).y == snakeParts.get(1).y)) {
+            return;
+        }
+
         switch (direction) {
             case UP:
                 if (!this.direction.equals(Direction.DOWN)) {
@@ -27,11 +34,13 @@ public class Snake {
             case LEFT:
                 if (!this.direction.equals(Direction.RIGHT)) {
                     this.direction = direction;
+
                 }
                 break;
             case RIGHT:
                 if (!this.direction.equals(Direction.LEFT)) {
                     this.direction = direction;
+
                 }
                 break;
             default:
