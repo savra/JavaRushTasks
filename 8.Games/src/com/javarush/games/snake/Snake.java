@@ -13,7 +13,30 @@ public class Snake {
     public boolean isAlive = true;
 
     public void setDirection(Direction direction) {
-        this.direction = direction;
+        switch (direction) {
+            case UP:
+                if (!this.direction.equals(Direction.DOWN)) {
+                    this.direction = direction;
+                }
+                break;
+            case DOWN:
+                if (!this.direction.equals(Direction.UP)) {
+                    this.direction = direction;
+                }
+                break;
+            case LEFT:
+                if (!this.direction.equals(Direction.RIGHT)) {
+                    this.direction = direction;
+                }
+                break;
+            case RIGHT:
+                if (!this.direction.equals(Direction.LEFT)) {
+                    this.direction = direction;
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     public Snake(int x, int y) {
