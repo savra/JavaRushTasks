@@ -34,13 +34,11 @@ public class Snake {
             case LEFT:
                 if (!this.direction.equals(Direction.RIGHT)) {
                     this.direction = direction;
-
                 }
                 break;
             case RIGHT:
                 if (!this.direction.equals(Direction.LEFT)) {
                     this.direction = direction;
-
                 }
                 break;
             default:
@@ -72,6 +70,7 @@ public class Snake {
         } else {
             if (newHead.x == apple.x && newHead.y == apple.y) {
                 apple.isAlive = false;
+
             } else {
                 snakeParts.add(0, newHead);
                 removeTail();
