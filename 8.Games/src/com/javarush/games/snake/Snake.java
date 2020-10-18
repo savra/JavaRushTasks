@@ -34,11 +34,13 @@ public class Snake {
             case LEFT:
                 if (!this.direction.equals(Direction.RIGHT)) {
                     this.direction = direction;
+
                 }
                 break;
             case RIGHT:
                 if (!this.direction.equals(Direction.LEFT)) {
                     this.direction = direction;
+
                 }
                 break;
             default:
